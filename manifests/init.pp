@@ -20,4 +20,10 @@ class etckeeper {
     subscribe   => File['/etc/etckeeper/etckeeper.conf'],
     unless      => 'test -d /etc/.git',
   }
+
+  file { '/etc/.git/config':
+    mode    => 0644,
+    content => template('etckeeper/gitconfig.erb'),
+    require => Exec[etckeeper-init],
+  }
 }
