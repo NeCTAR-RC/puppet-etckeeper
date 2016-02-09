@@ -2,11 +2,7 @@
 class etckeeper {
 
   $etckeeper_pkgs = ['etckeeper', 'git']
-
-  package { $etckeeper_pkgs:
-    ensure => installed,
-    notify => File['/etc/etckeeper/etckeeper.conf']
-  }
+  ensure_packages($etckeeper_pkgs)
 
   file { '/etc/etckeeper/etckeeper.conf':
     owner     => 'root',
