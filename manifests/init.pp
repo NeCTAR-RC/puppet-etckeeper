@@ -2,19 +2,13 @@
 class etckeeper {
 
   $etckeeper_pkgs = ['etckeeper', 'git']
-
-  package { $etckeeper_pkgs:
-    ensure => installed,
-    notify => File['/etc/etckeeper/etckeeper.conf']
-  }
+  ensure_packages($etckeeper_pkgs)
 
   file { '/etc/etckeeper/etckeeper.conf':
     owner     => 'root',
     group     => 'root',
     mode      => '0644',
     source    => 'puppet:///modules/etckeeper/etckeeper.conf',
-    subscribe => Package[$etckeeper_pkgs],
-    notify    => Exec['etckeeper-init'],
   }
 
   exec { 'etckeeper-init':
