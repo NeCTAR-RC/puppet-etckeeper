@@ -5,10 +5,11 @@ class etckeeper {
   ensure_packages($etckeeper_pkgs)
 
   file { '/etc/etckeeper/etckeeper.conf':
-    owner     => 'root',
-    group     => 'root',
-    mode      => '0644',
-    source    => 'puppet:///modules/etckeeper/etckeeper.conf',
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    source  => 'puppet:///modules/etckeeper/etckeeper.conf',
+    require => Package['etckeeper'],
   }
 
   exec { 'etckeeper-init':
