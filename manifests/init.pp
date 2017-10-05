@@ -2,7 +2,7 @@
 class etckeeper {
 
   $etckeeper_pkgs = ['etckeeper', 'git']
-  ensure_packages($etckeeper_pkgs)
+  ensure_packages($etckeeper_pkgs, {tag => 'nectar'})
 
   file { '/etc/etckeeper/etckeeper.conf':
     owner   => 'root',
